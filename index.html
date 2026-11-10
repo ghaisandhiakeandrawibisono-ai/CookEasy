@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=devicewidth, initial-scale=1.0">
+<title>CookEasy - Web Application</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; 
+}
+body { background: #f8fafc; color: #0f172a; lineheight: 1.5; }
+/* HEADER & TABS */ header { background: #ffffff; border-bottom: 2px solid #ea580c; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.05); } .top-nav { max-width: 1000px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.brand { display: flex; align-items: center; gap: 
+8px; font-weight: 900; font-size: 20px; color: 
+#ea580c; }
+.nav-buttons { display: flex; gap: 6px; overflow-x: auto; max-width: 100%; padding-bottom: 4px; } .tab-btn { padding: 8px 12px; border: 1px solid #cbd5e1; background: #f1f5f9; color: #334155; border-radius: 8px; font-weight: 700; font-size: 12px; cursor: pointer; white-space: nowrap; } .tab-btn.active { background: #ea580c; color: white; border-color: #ea580c; }
+/* CONTAINER SLIDES */
+main { max-width: 1000px; margin: 20px auto; padding: 0 16px; }
+.slide-panel { display: none; background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+.slide-panel.active { display: block; }
+.title { font-size: 24px; font-weight: 800; color: 
+#0f172a; margin-bottom: 12px; }
+.subtitle { font-size: 14px; color: #64748b; margin-bottom: 20px; }
+/* SLIDE 1 */
+.hero-box { text-align: center; padding: 30px 
+10px; background: linear-gradient(180deg, #fff7ed 0%, #ffffff 100%); border-radius: 12px; border: 1px solid #ffedd5; }
+.btn-action { background: #ea580c; color: white; border: none; padding: 10px 20px; border-radius: 
+8px; font-weight: 800; cursor: pointer; margin: 
+5px; }
+.btn-sec { background: #0f172a; color: white; border: none; padding: 10px 20px; border-radius: 
+8px; font-weight: 800; cursor: pointer; margin: 5px; }
+/* SLIDE 2: STEAK ANIMATION */
+.skillet-area { background: #18181b; borderradius: 16px; padding: 30px; text-align: center; color: white; position: relative; }
+.pan { width: 180px; height: 180px; background: #27272a; border: 10px solid #3f3f46; borderradius: 50%; margin: 0 auto; display: flex; alignitems: center; justify-content: center; cursor: pointer; }
+.pan.sizzle { animation: shake 0.15s infinite; } @keyframes shake { 0% { transform: rotate(0deg); } 50% { transform: rotate(1deg) scale(1.01); } 100% { transform: rotate(-1deg); } } .steak { width: 120px; height: 80px; background: 
+#7c2d12; border-radius: 20px; border: 3px solid #451a03; display: flex; align-items: center; justifycontent: center; font-size: 12px; font-weight: 900; color: #fef08a; text-align: center; }
+.steam { font-size: 20px; animation: rise 1.5s infinite opacity; }
+/* SLIDE 3: RESEP */
+.country-select { padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1; width: 100%; font-weight: 700; margin-bottom: 16px; }
+.recipe-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; } .card { border: 1px solid #e2e8f0; border-radius: 
+10px; padding: 14px; background: #f8fafc; } .card h4 { font-size: 15px; color: #ea580c; 
+margin-bottom: 6px; }
+.card p { font-size: 12px; color: #475569; marginbottom: 8px; }
+/* SLIDE 4: PANTRY */
+.pantry-chips { display: flex; flex-wrap: wrap; gap: 
+8px; margin-bottom: 16px; }
+.chip { padding: 6px 12px; border: 1px solid #cbd5e1; background: white; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: pointer; }
+.chip.active { background: #0f172a; color: white; }
+/* SLIDE 5: FORM & REVIEWS */
+.form-input { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; marginbottom: 10px; font-size: 13px; }
+.review-card { background: #f8fafc; border-left: 4px solid #ea580c; padding: 10px 14px; marginbottom: 8px; border-radius: 4px; font-size: 13px; }
+</style>
+</head> <body>
+<header>
+<div class="top-nav">
+<div class="brand">	 CookEasy</div>
+<div class="nav-buttons">
+<button class="tab-btn active" 
+onclick="switchSlide(1)">1. Home</button>
+<button class="tab-btn" 
+onclick="switchSlide(2)">2. Steak Pan</button>
+<button class="tab-btn" 
+onclick="switchSlide(3)">3. 16 Negara</button>
+<button class="tab-btn" 
+onclick="switchSlide(4)">4. Pantry Finder</ button>
+<button class="tab-btn" 
+onclick="switchSlide(5)">5. Rilis Resep</button>
+</div>
+</div>
+</header>
+<main>
+<!-- SLIDE 1 -->
+<section id="slide-1" class="slide-panel active">
+<div class="hero-box">
+<!-- LOGO VECTOR CHEF: TOPI SAMPAI DADA -->
+<svg width="140" height="150" viewBox="0 0 
+200 200" fill="none" xmlns="http://www.w3.org/
+2000/svg" style="margin: 0 auto 16px;">
+<!-- Topi Koki -->
+<path d="M 60 60 C 45 50, 45 25, 75 20 C 80 5, 120 5, 130 20 C 150 10, 160 35, 145 60 Z" fill="#FFFFFF" stroke="#0F172A" strokewidth="4"/>
+<rect x="65" y="60" width="70" height="15" rx="3" fill="#EA580C"/>
+<!-- Wajah -->
+<path d="M 75 75 C 75 75, 80 110, 100 110 C 120 110, 125 75, 125 75 Z" fill="#FDE047" stroke="#0F172A" stroke-width="3"/> <circle cx="88" cy="88" r="3" fill="#0F172A"/>
+<circle cx="112" cy="88" r="3" fill="#0F172A"/>
+<path d="M 90 98 Q 100 104 110 98" 
+stroke="#0F172A" stroke-width="3" fill="none"/> <!-- Baju/Dada -->
+<path d="M 60 120 C 50 130, 40 160, 35 190 L 165 190 C 160 160, 150 130, 140 120 Z" fill="#FFFFFF" stroke="#0F172A" strokewidth="4"/>
+<circle cx="90" cy="140" r="3" fill="#EA580C"/>
+<circle cx="110" cy="140" r="3" fill="#EA580C"/>
+<circle cx="90" cy="165" r="3" fill="#EA580C"/>
+<circle cx="110" cy="165" r="3" fill="#EA580C"/> </svg>
+<h1 class="title">Selamat Datang di CookEasy</ h1>
+<p class="subtitle">Platform Kuliner Interaktif 
+Lengkap 5 Slide</p>
+<div>
+<button class="btn-action" 
+onclick="switchSlide(2)">Mulai Animasi Steak •
+</button>
+<button class="btn-sec" 
+onclick="switchSlide(3)">Jelajah 16 Negara ‹</ button> </div>
+</div>
+</section>
+<!-- SLIDE 2 -->
+<section id="slide-2" class="slide-panel">
+<h2 class="title">Simulasi Sizzling Steak</h2> <p class="subtitle">Tekan daging steak atau gunakan tombol di bawah untuk membalik daging.</p>
+<div class="skillet-area">
+<div class="steam" id="steam-effect">  </ div>
+<div class="pan sizzle" id="pan-element" onclick="flipSteak()">
+<div class="steak" id="steak-element">SISI 
+A<br>(MEDIUM)</div>
+</div>
+<div style="margin-top: 15px; font-weight: 800; 
+font-size: 13px; color: #fb923c;" id="heatstatus">SUHU: MEDIUM HEAT</div> </div>
+<div style="margin-top: 16px; display: flex; gap: 
+8px; flex-wrap: wrap;"> <button class="btn-action" 
+onclick="flipSteak()">	 Balik Daging (Flip)</ button>
+<button class="tab-btn" 
+onclick="setHeat('LOW')">Api Kecil</button>
+<button class="tab-btn" 
+onclick="setHeat('MEDIUM')">Api Sedang</ button>
+<button class="tab-btn" 
+onclick="setHeat('HIGH')">Api Besar</button>
+</div>
+</section>
+<!-- SLIDE 3 -->
+<section id="slide-3" class="slide-panel">
+<h2 class="title">Katalog Resep 16 Negara</h2> <p class="subtitle">Pilih negara untuk melihat daftar resep otentik beserta alat & bahan.</p>
+<select class="country-select" id="countrydropdown" onchange="renderCountryRecipes()">
+<!-- Populated via JS -->
+</select>
+<div class="recipe-list" id="recipe-listcontainer"></div> </section>
+<!-- SLIDE 4 -->
+<section id="slide-4" class="slide-panel">
+<h2 class="title">Smart Pantry Finder</h2> <p class="subtitle">Pilih bahan yang ada di kulkas Anda untuk menemukan resep yang cocok.</p>
+<div class="pantry-chips" id="pantry-chipscontainer"></div>
+<input type="text" id="pantry-search-input" class="form-input" placeholder="Cari berdasarkan nama masakan..." oninput="filterPantry()">
+<div class="recipe-list" id="pantry-resultscontainer"></div> </section>
+<!-- SLIDE 5 -->
+<section id="slide-5" class="slide-panel">
+<h2 class="title">Rilis Resep & Rating 
+Komunitas</h2>
+<p class="subtitle">Bagikan resep kreasi Anda dan berikan nilai bintang pada masakan komunitas.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;"> <form onsubmit="submitUserRecipe(event)"> <h3 style="margin-bottom: 10px; font-size: 
+16px;">; Formulir Resep</h3>
+<input type="text" id="form-title" class="forminput" placeholder="Nama Masakan" required> <input type="text" id="form-country" class="forminput" placeholder="Negara Asal" required> <input type="text" id="form-ingredients" class="form-input" placeholder="Bahan Utama 
+(misal: Ayam, Telur)" required>
+<textarea id="form-steps" class="form-input" rows="3" placeholder="Langkah pembuatan..." required></textarea>
+<button type="submit" class="btn-action" style="width: 100%; margin: 0;">Terbitkan 
+Resep</button>
+</form>
+<div>
+<h3 style="margin-bottom: 10px; font-size: 
+16px;">\ Ulasan Komunitas</h3>
+<div id="community-reviews"></div>
+</div>
+</div>
+</section>
+</main>
+<script>
+// DATA SLIDE 3 (16 NEGARA) const countriesData = [
+"Indonesia", "Jepang", "Italia", "Tiongkok", 
+"Meksiko", "Perancis",
+"Thailand", "India", "Korea", "Vietnam", "Spanyol", 
+"Yunani",
+"Turki", "Amerika Serikat", "Brasil", "Maroko"
+ ];
+const recipesDB = [
+{ id: 1, name: "Sate Ayam Madura", country: "Indonesia", tools: "Tusuk Sate, Panggangan", ingredients: ["Ayam", "Kacang", "Bawang"], steps: "Potong ayam, panggang dengan bumbu kacang." },
+{ id: 2, name: "Rendang Daging", country: 
+"Indonesia", tools: "Wajan, Spatula", ingredients: ["Daging", "Santan", "Cabai"], steps: "Ungkep daging bersama santan hingga berminyak." }, { id: 3, name: "Sushi Salmon Nigiri", country: 
+"Jepang", tools: "Pisau Jepang, Mat", ingredients: ["Nasi", "Ikan", "Cuka"], steps: "Bentuk nasi sushi, beri irisan salmon di atasnya." },
+{ id: 4, name: "Ramen Tonkotsu", country: 
+"Jepang", tools: "Panci Mangkuk", ingredients: ["Mi", "Daging", "Telur"], steps: "Rebus mi dan sajikan dengan kuah kaldu gurih." },
+{ id: 5, name: "Spaghetti Carbonara", country: "Italia", tools: "Panci Pasta", ingredients: ["Pasta", "Telur", "Keju"], steps: "Rebus pasta, campur kuning telur dan keju parut." },
+{ id: 6, name: "Pizza Margherita", country: "Italia", tools: "Oven Pizza", ingredients: ["Roti", "Keju", "Tomat"], steps: "Oleskan saus tomat, beri keju, oven 15 menit." },
+{ id: 7, name: "Mapo Tofu Sichuan", country: 
+"Tiongkok", tools: "Wok Pan", ingredients: ["Tofu", "Daging", "Cabai"], steps: "Tumis tofu dan daging giling pedas khas Sichuan." },
+{ id: 8, name: "Tacos Daging Birria", country: 
+"Meksiko", tools: "Pan Datar", ingredients: 
+["Daging", "Bawang", "Tortilla"], steps: "Isi tortilla dengan daging lembut dan lipat." },
+{ id: 9, name: "Croissant Mentega", country: 
+"Perancis", tools: "Oven", ingredients: ["Tepung", "Mentega"], steps: "Gulung adonan berlapir mentega, panggang renyah." },
+{ id: 10, name: "Pad Thai Udang", country: "Thailand", tools: "Wok Pan", ingredients: ["Mi", "Udang", "Telur"], steps: "Tumis mi beras dengan 
+udang dan bumbu asam manis." }
+];
+const availableIngredients = ["Ayam", "Daging", 
+"Telur", "Tofu", "Pasta", "Mi", "Bawang", "Cabai", 
+"Keju"];
+let activePantry = [];
+let userReviews = [
+{ title: "Soto Ayam Lamongan", country: "Indonesia", rating: 5, review: "Kuah gurih dan aroma khas!" },
+{ title: "Tacos Birria", country: "Meksiko", rating: 4, review: "Sangat renyah dan berdaging." }
+ ];
+// INIT
+document.addEventListener('DOMContentLoade d', () => {
+initCountryDropdown(); renderCountryRecipes(); initPantryChips(); filterPantry();
+renderReviews();
+});
+// SLIDE SWITCHER function switchSlide(index) { const panels = document.querySelectorAll('.slide-panel');
+const btns = document.querySelectorAll('.tabbtn');
+panels.forEach((p, i) => {
+p.classList.toggle('active', i === (index - 1));
+});
+btns.forEach((b, i) => {
+b.classList.toggle('active', i === (index - 1));
+});
+}
+// SLIDE 2: STEAK LOGIC let isSideA = true; function flipSteak() { isSideA = !isSideA;
+const steak = document.getElementById('steakelement'); steak.innerHTML = isSideA ? "SISI A<br>(MEDIUM)" : "SISI B<br>(SEARED)"; steak.style.background = isSideA ? "#7c2d12" : 
+"#451a03";
+}
+function setHeat(level) {
+const pan = document.getElementById('panelement');
+const status = document.getElementById('heatstatus');
+const steam = document.getElementById('steam-
+effect');
+if (level === 'LOW') { pan.style.animationDuration = '0.5s'; status.innerText = "SUHU: LOW HEAT"; steam.innerText = "	";
+} else if (level === 'MEDIUM') { pan.style.animationDuration = '0.15s';
+status.innerText = "SUHU: MEDIUM HEAT";
+steam.innerText = "	 	 	";
+} else {
+pan.style.animationDuration = '0.05s'; status.innerText = "SUHU: HIGH HEAT (HOT!)";
+steam.innerText = "	 	 	 	 	";
+}
+}
+// SLIDE 3: 16 COUNTRIES LOGIC
+function initCountryDropdown() { const select = document.getElementById('country-dropdown'); select.innerHTML = countriesData.map(c => 
+<option value="${c}">${c}&lt;/option>).join('');
+}
+function renderCountryRecipes() { const selected = 
+document.getElementById('countrydropdown').value; const container = document.getElementById('recipe-list-container'); const filtered = recipesDB.filter(r => r.country 
+=== selected);
+if (filtered.length === 0) { container.innerHTML = <div style="grid-column: 1/-1; color: #64748b; font-size: 13px;"&gt;Resep standar untuk ${selected} tersedia di katalog lengkap.</div>`;
+return;
+}
+container.innerHTML = filtered.map(r => &lt;div class="card"&gt; &lt;h4&gt;${r.name}</h4> <p><strong>	 Alat:</strong> 
+ 
+{r.ingredients.join(', ')}</p>
+<p style="font-size: 11px; color: #0f172a;">$
+{r.steps}&lt;/p&gt; &lt;/div&gt;).join(''); }
+// SLIDE 4: PANTRY LOGIC function initPantryChips() { const container = 
+document.getElementById('pantry-chipscontainer'); container.innerHTML = availableIngredients.map(ing => &lt;button class="chip" id="chip-${ing}" 
+onclick="toggleChip('  {ing}</button>
+`).join('');
+}
+function toggleChip(ing) { if (activePantry.includes(ing)) {
+activePantry = activePantry.filter(i => i !== ing);
+document.getElementById(chip-$
+{ing}).classList.remove('active'); } else { 
+activePantry.push(ing); 
+document.getElementById(chip-$
+{ing}).classList.add('active');
+}
+filterPantry();
+} function filterPantry() { const query = document.getElementById('pantrysearch-input').value.toLowerCase(); const container = 
+document.getElementById('pantry-resultscontainer');
+const filtered = recipesDB.filter(r => { const matchPantry = activePantry.length === 0 || activePantry.every(i => r.ingredients.includes(i)); const matchQuery = !query || 
+r.name.toLowerCase().includes(query);
+return matchPantry && matchQuery;
+});
+if (filtered.length === 0) { container.innerHTML = <div style="grid-column: 1/-1; color: #64748b; font-size: 13px;"&gt;Tidak ada resep yang cocok.&lt;/div>; return;
+}
+container.innerHTML = filtered.map(r => &lt;div class="card"&gt; &lt;h4&gt;${r.name} ($
+{r.country})&lt;/h4&gt; 
+&lt;p&gt;&lt;strong&gt;Bahan:&lt;/strong&gt; $
+{r.ingredients.join(', ')}</p>
+</div>
+`).join('');
+}
+// SLIDE 5: REVIEWS LOGIC function submitUserRecipe(e) { e.preventDefault(); const title = document.getElementById('formtitle').value;
+const country = document.getElementById('formcountry').value;
+userReviews.unshift({
+title: title,
+country: country,
+rating: 5,
+review: "Baru saja diterbitkan oleh pengguna."
+});
+e.target.reset(); renderReviews();
+alert("Resep berhasil terbit!");
+}
+function renderReviews() { const container = document.getElementById('community-reviews'); container.innerHTML = userReviews.map(r => 
+&lt;div class="review-card"&gt; &lt;div style="fontweight: 800; color: #0f172a;"&gt;${r.title} <span style="font-size: 11px; color: #ea580c;">(
+{'★'.repeat(r.rating)}</div>
+<div style="color: #475569; font-size: 12px;">"$
+{r.review}"</div>
+</div>
+`).join('');
+}
+</script>
+</body>
+</html>
